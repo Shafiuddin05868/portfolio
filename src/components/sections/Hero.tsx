@@ -66,13 +66,13 @@ export function Hero() {
               <a href="#contact">Contact Me</a>
             </Button>
             <Button variant="ghost" size="lg" asChild>
-              <a href="https://github.com/shafiuddin" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/Shafiuddin05868" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-5 w-5" />
                 GitHub
               </a>
             </Button>
             <Button variant="ghost" size="lg" asChild>
-              <a href="https://linkedin.com/in/shafiuddin" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/in/shafiuddin-chowdury" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-2 h-5 w-5" />
                 LinkedIn
               </a>
