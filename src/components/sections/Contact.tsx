@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react'
 import { AnimatedSection } from '@/components/shared/AnimatedSection'
 import { GlassCard } from '@/components/shared/GlassCard'
@@ -11,13 +10,25 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 
 export function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }))
+  }
+
+  const handleSendEmail = () => {
+    const { name, email, subject, message } = formData
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`
+    const mailtoLink = `mailto:shafiuddin05868@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`
+    window.location.href = mailtoLink
   }
 
   return (
@@ -102,42 +113,59 @@ export function Contact() {
             <GlassCard>
               <h3 className="text-xl font-bold mb-6">Send a Message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" placeholder="Your name" required />
+                    <Input 
+                      id="name" 
+                      placeholder="Your name" 
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" required />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="your@email.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="Project inquiry" required />
+                  <Input 
+                    id="subject" 
+                    placeholder="Project inquiry"
+                    value={formData.subject}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Tell me about your project..." required />
+                  <Textarea 
+                    id="message" 
+                    placeholder="Tell me about your project..."
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
                 </div>
 
-                <Button type="submit" variant="glow" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                    >
-                      <Send className="h-4 w-4 mr-2" />
-                    </motion.div>
-                  ) : (
-                    <Send className="h-4 w-4 mr-2" />
-                  )}
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                <Button 
+                  type="button" 
+                  variant="glow" 
+                  className="w-full"
+                  onClick={handleSendEmail}
+                >
+                  <Send className="h-4 w-4 mr-2" />
+                  Open Email Client
                 </Button>
-              </form>
+              </div>
             </GlassCard>
           </AnimatedSection>
         </div>
