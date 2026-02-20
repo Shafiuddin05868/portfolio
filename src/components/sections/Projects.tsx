@@ -4,23 +4,27 @@ import { ExternalLink, Github, Layers } from 'lucide-react'
 import { AnimatedSection } from '@/components/shared/AnimatedSection'
 import { GlassCard } from '@/components/shared/GlassCard'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 const projects = [
-  {
-    title: 'Export Bangladesh',
-    subtitle: 'Market Intelligence Platform',
-    description: 'Developed full admin dashboard for managing importers, exporters, products, and role permissions. Also worked on maintenance of seller, buyer dashboard and homepage.',
-    technologies: ['Next.js', 'TypeScript', 'Redux', 'PostgreSQL', 'Tailwind CSS'],
-    image: '/images/export-bangladesh.png',
-    color: 'from-blue-500 to-cyan-500',
-  },
   {
     title: 'EzyMemo',
     subtitle: 'F-Commerce Management Tool',
     description: 'A full stack web application to manage small and F-Commerce businesses and showcase their products, get customers order directly from their EzyMemo Store.',
     technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Tailwind CSS'],
     image: '/images/ezymemo.png',
+    link: 'https://ezymemo.com',
+    githubUrl: 'https://github.com/Web-of-Shafiuddin/quick_memo',
     color: 'from-purple-500 to-pink-500',
+  },
+  {
+    title: 'Export Bangladesh',
+    subtitle: 'Market Intelligence Platform',
+    description: 'Developed full admin dashboard for managing importers, exporters, products, and role permissions. Also worked on maintenance of seller, buyer dashboard and homepage.',
+    technologies: ['Next.js', 'TypeScript', 'Redux', 'PostgreSQL', 'Tailwind CSS'],
+    image: '/images/export-bangladesh.png',
+    link: 'https://exportbangladesh.org',
+    color: 'from-blue-500 to-cyan-500',
   },
   {
     title: 'Bitcommerz',
@@ -28,6 +32,7 @@ const projects = [
     description: 'Built custom themes, widgets, and a drag-and-drop form builder for e-commerce websites. Enabled users to easily add form inputs to their websites.',
     technologies: ['Next.js', 'TypeScript', 'Redux', 'Tailwind CSS', 'Figma API'],
     image: '/images/bitcommerz.png',
+    link: 'https://bitcommerz.com',
     color: 'from-orange-500 to-amber-500',
   },
   {
@@ -36,6 +41,7 @@ const projects = [
     description: 'Worked on maintenance, improvements, and new features for admin dashboard and homepage of this major electronics retail platform.',
     technologies: ['React', 'Next.js', 'TypeScript', 'PostgreSQL'],
     image: '/images/gadget-gear.png',
+    link: 'https://gadgetandgear.com',
     color: 'from-green-500 to-emerald-500',
   },
 ]
@@ -66,14 +72,18 @@ export function Projects() {
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                    <Button variant="glow" size="sm">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      View Demo
+                    <Button variant="glow" size="sm" asChild>
+                      <Link href={project.link} target="_blank">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        View Demo
+                      </Link>
                     </Button>
-                    <Button variant="outline" size="sm">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Button>
+                    {project.githubUrl && <Button variant="outline" size="sm" asChild>
+                      <Link href={project.githubUrl} target="_blank">
+                        <Github className="h-4 w-4 mr-2" />
+                        Code
+                      </Link>
+                    </Button>}
                   </div>
                 </div>
 
