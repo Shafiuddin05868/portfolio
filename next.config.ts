@@ -14,6 +14,22 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'ezymemo.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'bitcommerz.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'exportbangladesh.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'gadgetandgear.com',
+      },
     ],
   },
 }
