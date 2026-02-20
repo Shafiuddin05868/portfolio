@@ -46,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+        <script dangerouslySetInnerHTML={{ __html: `localStorage.removeItem('theme')` }} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
